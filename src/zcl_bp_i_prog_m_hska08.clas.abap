@@ -1,0 +1,9 @@
+CLASS zcl_bp_i_prog_m_hska08 DEFINITION
+PUBLIC
+ABSTRACT
+FINAL
+FOR BEHAVIOR OF zi_prog_m_hska08.
+ENDCLASS.
+
+CLASS zcl_bp_i_prog_m_hska08 IMPLEMENTATION.
+ENDCLASS.

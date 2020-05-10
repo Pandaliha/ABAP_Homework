@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition für Sprachen'
+define service ZUI_C_PROG_M_HSKA08 {
+  expose ZC_PROG_M_HSKA08 as LanguageProcessor;
+}
