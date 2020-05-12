@@ -1,0 +1,12 @@
+[
+    {
+      "language_name": "Java",
+      "description": "Java ist eine Sprache die auf verschiedenen Plattformen läuft, für die es eine Java Virtual Machine gibt. Es gibt Leute die sagen Java nach, langsam zu sein. Außerdem ist Java die Programmiersprache für Apps auf der Android Plattform. Wenn du Apps für Android Smartphones schreiben möchtest, bist du bei Java genau richtig. Genauso gut kann man damit Webanwendungen und Desktop-Applikationen sowie 3D-Spiele schreiben. Diese Sprache ist wirklich sehr vielseitig.",
+      "snippet": "System.out.println(\"ABAP sucks\");"
+    },
+    {
+      "language_name": "Python",
+      "description": "Python hat sich in den letzten Jahren im Grunde als Eierlegende Wollmilchsau etabliert. Sie werden an vielen Stellen im Netz Diskussionen finden, ob Python nun eine Skriptsprache oder eine \"echte\" Programmiersprache ist, aber da kann man es sich einfach machen: Der Erfinder von Python, Guido von Rossum, nennt Python eine \"universelle Allzweck-Programmiersprache\" und das passt auch so. Sie k\u00F6nnen mit Python kleine Skripte f\u00FCr den Admin-Alltag schreiben, aber eben auch monolithische Desktop-Programme f\u00FCr Kunden.",
+      "snippet": "print('Hello World')"
+    }
+  ]

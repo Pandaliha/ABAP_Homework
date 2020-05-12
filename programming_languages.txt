@@ -1,0 +1,61 @@
+Java
+
+Java ist eine Sprache die auf verschiedenen Plattformen läuft, für die es eine Java Virtual Machine gibt. Es gibt Leute die sagen Java nach, langsam zu sein. Außerdem ist Java die Programmiersprache für Apps auf der Android Plattform. Wenn du Apps für Android Smartphones schreiben möchtest, bist du bei Java genau richtig. Genauso gut kann man damit Webanwendungen und Desktop-Applikationen sowie 3D-Spiele schreiben. Diese Sprache ist wirklich sehr vielseitig.
+
+System.out.println("Hello World");
+
+---------------------------
+
+Python
+
+Python hat sich in den letzten Jahren im Grunde als Eierlegende Wollmilchsau etabliert. Sie werden an vielen Stellen im Netz Diskussionen finden, ob Python nun eine Skriptsprache oder eine "echte" Programmiersprache ist, aber da kann man es sich einfach machen: Der Erfinder von Python, Guido von Rossum, nennt Python eine "universelle Allzweck-Programmiersprache" und das passt auch so. Sie können mit Python kleine Skripte für den Admin-Alltag schreiben, aber eben auch monolithische Desktop-Programme für Kunden.
+
+print('Hello World')
+
+---------------------------
+
+JavaScript
+
+Wenn es Ihnen also eher darum geht, schicke, interaktive Webseiten zu stricken oder vielleicht als Wirtschaftsstudent ein eigenes Start-up aufzuziehen, ist JavaScript keine schlechte Alternative. Auch die beruflichen Chancen stehen sehr gut, weil JavaScript-Entwickler vermutlich in nahezu jedem Web-Dienstleister-Büro anfangen können, selbst den Kleinsten.
+
+alert( 'Hello, world!' );
+
+---------------------------
+
+C, C++, C#
+
+C, C++, C# kommt hauptsächlich im Server/Desktop-Umfeld vor, wird also benutzt für Programme die lokal auf einem Computer laufen. C# wurde von Microsoft entwickelt, die Programmierung wird dementsprechend unter Windows gemacht. Mit C und C++ kann man für viele Plattformen wie Linux, Mac und Windows programmieren, aber auch Hardwarenahe-Programmierung wird mit C und C++ durchgeführt.
+
+printf("Hello World\n");
+
+---------------------------
+
+TypeScript
+
+Wer JavaScript beherrscht, ist auf jeden Fall gut aufgestellt. Seit 2012 gibt es einen neuen Player aus dem Hause Microsoft: TypeScript. Im Gegensatz zu JavaScript ist TypeScript statisch typisiert und gibt euch mehr Kontrolle über euren eigenen Code.
+
+console.log("Hello World"); 
+
+---------------------------
+
+Dart
+
+Dart ist eine ECMA-standardisierte Programmiersprache aus dem Hause Google, deren Entwickler vor allem die Verwendung in Web-Browsern dafür ins Auge gefasst hatten.
+
+print('Hello World!');
+
+---------------------------
+
+Kotlin
+
+Kotlin ist erst ein paar Jahre alt und hat somit viele moderne Features an Bord, die bei Java erst nach und nach mehr schlecht als recht hinzugekommen sind. Durch die Null-Sicherheit, sehr einfache Syntax für Lambda-Funktionen und Sprachkonstrukte, die den Code gegenüber Java deutlich reduzieren, gehört Kotlin für Android definitiv zu den Must-haves.
+
+println("Hello World!")
+
+---------------------------
+
+Go
+
+Die Open-Source-Programmiersprache Go wurde von Google aus Unzufriedenheit mit Java und C++ entwickelt. Sie ist vor allem für Cloud-Computing relevant. Der Fokus von Go liegt klar auf Effizienz und produktiver Entwicklung. Um bestehenden Code nicht zu gefährden, soll Go in späteren Versionen weiterhin mit der ersten Version kompatibel bleiben. Wer Go beherrscht, kann durchaus Zeit sparen, jedoch ist die Einarbeitung ziemlich zeitaufwendig und mühsam.
+
+fmt.Println("hello world")
