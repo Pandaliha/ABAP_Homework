@@ -3,9 +3,10 @@ CLASS lhc_language DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     TYPES tt_language_update TYPE  TABLE FOR UPDATE zi_prog_m_hska08.
 
-    METHODS validatelanguage FOR VALIDATION language~validatelanguage IMPORTING keys FOR language.
-
+    METHODS validaterating FOR VALIDATION language~validaterating IMPORTING keys FOR language.
+    METHODS validateLanguage FOR VALIDATION language~validateLanguage IMPORTING keys FOR language.
     METHODS set_status_completed FOR MODIFY IMPORTING keys FOR ACTION language~acceptfavorite RESULT result.
+    METHODS unfavorite FOR MODIFY IMPORTING keys FOR ACTION language~unfavorite RESULT result.
     METHODS get_features               FOR FEATURES IMPORTING keys REQUEST    requested_features FOR language    RESULT result.
     METHODS calculatelanguagekey FOR DETERMINATION language~calculatelanguagekey IMPORTING keys FOR language.
 ENDCLASS.
@@ -16,32 +17,51 @@ CLASS lhc_language IMPLEMENTATION.
 * Validate language data when saving language data
 *
 **********************************************************************
-  METHOD validatelanguage.
+
+Method  validateLanguage.
+   READ ENTITY zi_prog_m_hska08\\language FROM VALUE #(
+    FOR <root_key> IN keys ( %key     = <root_key>
+                                   %control = VALUE #( language_name = if_abap_behv=>mk-on ) ) )
+          RESULT DATA(lt_language_result).
+
+    LOOP AT lt_language_result INTO DATA(ls_language_result).
+      IF ls_language_result-language_name = ''.
+         APPEND VALUE #( %key = ls_language_result-%key
+                        mykey = ls_language_result-mykey ) TO Failed.
+
+          APPEND VALUE #(  %key = ls_language_result-%key
+                            %msg = new_message( id = 'ZHSKA08'
+                                            number = '002'
+                                            v1 = ls_language_result-language_name
+                                            severity = if_abap_behv_message=>severity-error )
+                        %element-language_name = if_abap_behv=>mk-on ) TO reported.
+      ENDIF.
+      ENDLOOP.
+
+ENDMETHOD.
+
+  METHOD validaterating.
 
     READ ENTITY zi_prog_m_hska08\\language FROM VALUE #(
     FOR <root_key> IN keys ( %key     = <root_key>
-                                   %control = VALUE #( language_id = if_abap_behv=>mk-on ) ) )
-          RESULT DATA(lt_language).
+                                   %control = VALUE #( rating = if_abap_behv=>mk-on ) ) )
+          RESULT DATA(lt_language_result).
 
-    DATA lt_languages TYPE SORTED TABLE OF zprog_hska08 WITH UNIQUE KEY language_id.
+    LOOP AT lt_language_result INTO DATA(ls_language_result).
+      IF ls_language_result-rating < 1 OR ls_language_result-rating > 5.
+         APPEND VALUE #( %key = ls_language_result-%key
+                        mykey = ls_language_result-mykey ) TO Failed.
 
-    " Optimization of DB select: extract distinct non-initial customer IDs
-    lt_languages = CORRESPONDING #( lt_language DISCARDING DUPLICATES MAPPING language_id = language_id EXCEPT * ).
-    DELETE lt_languages WHERE language_id IS INITIAL.
-    CHECK lt_languages IS NOT INITIAL.
-
-    " Check if customer ID exist
-    SELECT FROM zprog_hska08 FIELDS language_id
-      FOR ALL ENTRIES IN @lt_languages
-      WHERE language_id = @lt_languages-language_id
-      INTO TABLE @DATA(lt_languages_db).
+          APPEND VALUE #(  %key = ls_language_result-%key
+                            %msg = new_message( id = 'ZHSKA08'
+                                            number = '001'
+                                            v1 = ls_language_result-rating
+                                            severity = if_abap_behv_message=>severity-error )
+                        %element-rating = if_abap_behv=>mk-on ) TO reported.
+      ENDIF.
+      ENDLOOP.
   ENDMETHOD.
 
-********************************************************************************
-*
-* Implements language action
-*
-********************************************************************************
   METHOD set_status_completed.
     " Modify in local mode: BO-related updates that are not relevant for authorization checks
     MODIFY ENTITIES OF zi_prog_m_hska08 IN LOCAL MODE
@@ -77,6 +97,39 @@ CLASS lhc_language IMPLEMENTATION.
 
 
   ENDMETHOD.
+
+  METHOD unfavorite.
+    MODIFY ENTITIES OF zi_prog_m_hska08 IN LOCAL MODE
+      ENTITY language
+         UPDATE FROM VALUE #( FOR key IN keys ( mykey = key-mykey
+                                                favourite = ''
+                                                 %control-favourite = if_abap_behv=>mk-on
+                                                ) )
+      FAILED   failed
+      REPORTED reported.
+
+    " Read changed data for action result
+    READ ENTITIES OF zi_prog_m_hska08 IN LOCAL MODE
+         ENTITY language
+         FROM VALUE #( FOR key IN keys (  mykey = key-mykey
+                                            %control = VALUE #(
+                                            language_id       = if_abap_behv=>mk-on
+                                            language_name     = if_abap_behv=>mk-on
+                                            description      = if_abap_behv=>mk-on
+                                            snippet        = if_abap_behv=>mk-on
+                                            rating     = if_abap_behv=>mk-on
+                                            favourite     = if_abap_behv=>mk-on
+                                            created_by   = if_abap_behv=>mk-on
+                                            created_at  = if_abap_behv=>mk-on
+                                            last_changed_by     = if_abap_behv=>mk-on
+                                            last_changed_at      = if_abap_behv=>mk-on
+                                            ) ) )
+         RESULT DATA(lt_language).
+
+    result = VALUE #( FOR language IN lt_language ( mykey = language-mykey
+                                                %param    = language
+                                              ) ).
+  ENDMETHOD.
 *********************************************************************
 *
 * the dynamic feature handling for travel instances
@@ -95,7 +148,7 @@ CLASS lhc_language IMPLEMENTATION.
 
     result = VALUE #( FOR ls_language IN lt_language_result
                        ( %key                           = ls_language-%key
-                         %features-%action-acceptFavorite = COND #( WHEN ls_language-favourite = 'F'
+                         %features-%action-acceptfavorite = COND #( WHEN ls_language-favourite = 'F'
                                                                     THEN if_abap_behv=>fc-o-disabled ELSE  if_abap_behv=>fc-o-enabled   )
                       ) ).
 

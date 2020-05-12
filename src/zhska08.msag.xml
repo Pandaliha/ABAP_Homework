@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZHSKA08</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Nachricht</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZHSKA08</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Die Bewertung muss zwischen 1 und 5 liegen!</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZHSKA08</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Der Name der Programmiersprache muss gegeben sein!</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

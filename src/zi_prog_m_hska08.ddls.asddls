@@ -11,7 +11,6 @@ as select from zprog_hska08 as Language {
     description,
     snippet,
     rating,
-    favorite,
     favourite,
     
     /*-- Admin data --*/

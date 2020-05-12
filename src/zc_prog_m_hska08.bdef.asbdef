@@ -4,10 +4,14 @@ define behavior for ZC_PROG_M_HSKA08 alias LanguageProcessor
 use etag
 {
 // scenario specific field control
-field ( mandatory ) Name;
+field ( mandatory ) name;
 
   use update;
   use delete;
+  use create;
+
 
   use action acceptFavorite;
+  use action unFavorite;
+
 }
